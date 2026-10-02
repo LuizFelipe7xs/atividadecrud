@@ -1,0 +1,104 @@
+<div class="page-header">
+  <div>
+    <span class="section-label">CATÁLOGO</span>
+
+    <h1>Produtos</h1>
+
+    <p class="page-description">
+      Produtos cadastrados no sistema
+    </p>
+  </div>
+
+  <a routerLink="/novo" class="btn btn-primary">
+    + Novo produto
+  </a>
+</div>
+
+<div class="catalogo">
+
+  <div
+    class="produto-card"
+    *ngFor="let produto of produtos">
+
+    <div
+      class="produto-cor"
+      [class.preto]="produto.cor === 'Preto'"
+      [class.branco]="produto.cor === 'Branco'"
+      [class.azul]="produto.cor === 'Azul'"
+      [class.vermelho]="produto.cor === 'Vermelho'"
+      [class.verde]="produto.cor === 'Verde'">
+
+      <span>{{ produto.cor }}</span>
+
+    </div>
+
+    <div class="produto-conteudo">
+
+      <span class="categoria">
+        {{ produto.categoria }}
+      </span>
+
+      <h2>{{ produto.nome }}</h2>
+
+      <p class="descricao">
+        {{ produto.descricao }}
+      </p>
+
+      <div class="produto-info">
+
+        <div>
+          <span>Preço</span>
+
+          <strong>
+            R$ {{ produto.preco | number:'1.2-2' }}
+          </strong>
+        </div>
+
+        <div>
+          <span>Estoque</span>
+
+          <strong>
+            {{ produto.quantidade }}
+          </strong>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="produto-acoes">
+
+      <a
+        [routerLink]="['/editar', produto.id]"
+        class="btn btn-secondary">
+        Editar
+      </a>
+
+      <button
+        type="button"
+        class="btn btn-danger"
+        (click)="confirmarExclusao(produto.id!)">
+        Excluir
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div
+  *ngIf="!produtos.length"
+  class="empty-state">
+
+  <h2>Nenhum produto cadastrado</h2>
+
+  <p>
+    Cadastre seu primeiro produto para começar.
+  </p>
+
+  <a routerLink="/novo" class="btn btn-primary">
+    Cadastrar produto
+  </a>
+
+</div>

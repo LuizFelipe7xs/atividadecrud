@@ -1,0 +1,131 @@
+<div class="page-header">
+  <div>
+    <span class="section-label">CADASTRO</span>
+    <h1>{{ id ? 'Editar produto' : 'Novo produto' }}</h1>
+  </div>
+</div>
+
+<form class="card" (ngSubmit)="salvar()">
+
+  <div class="form-field">
+    <label for="nome">Nome do produto</label>
+
+    <input
+      type="text"
+      id="nome"
+      [(ngModel)]="produto.nome"
+      name="nome"
+      placeholder="Ex: Cadeira Decorativa"
+      required
+    />
+  </div>
+
+  <div class="form-field">
+    <label for="descricao">Descrição</label>
+
+    <input
+      type="text"
+      id="descricao"
+      [(ngModel)]="produto.descricao"
+      name="descricao"
+      placeholder="Descrição do produto"
+      required
+    />
+  </div>
+
+  <div class="form-row">
+
+    <div class="form-field">
+      <label for="preco">Preço</label>
+
+      <input
+        type="number"
+        id="preco"
+        [(ngModel)]="produto.preco"
+        name="preco"
+        step="0.01"
+        min="0"
+        placeholder="0,00"
+        required
+      />
+    </div>
+
+    <div class="form-field">
+      <label for="quantidade">Quantidade em estoque</label>
+
+      <input
+        type="number"
+        id="quantidade"
+        [(ngModel)]="produto.quantidade"
+        name="quantidade"
+        min="0"
+        placeholder="0"
+        required
+      />
+    </div>
+
+  </div>
+
+  <div class="form-row">
+
+    <div class="form-field">
+      <label for="categoria">Categoria</label>
+
+      <select
+        id="categoria"
+        [(ngModel)]="produto.categoria"
+        name="categoria"
+        required
+      >
+        <option value="" disabled>
+          Selecione uma categoria
+        </option>
+
+        <option
+          *ngFor="let categoria of categorias"
+          [value]="categoria">
+          {{ categoria }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label for="cor">Cor do produto</label>
+
+      <select
+        id="cor"
+        [(ngModel)]="produto.cor"
+        name="cor"
+        required
+      >
+        <option value="" disabled>
+          Selecione uma cor
+        </option>
+
+        <option
+          *ngFor="let cor of cores"
+          [value]="cor">
+          {{ cor }}
+        </option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="form-actions">
+
+    <button
+      type="submit"
+      class="btn btn-primary">
+      {{ id ? 'Salvar alterações' : 'Cadastrar produto' }}
+    </button>
+
+    <a
+      routerLink="/"
+      class="btn btn-secondary">
+      Cancelar
+    </a>
+
+  </div>
+
+</form>
